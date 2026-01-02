@@ -1,0 +1,27 @@
+[package]
+name = "aoc25"
+version = "0.1.0"
+edition = "2024"
+license = "AGPL-3.0-only"
+
+[dependencies]
+cached = "0.56"
+criterion = "0.8"
+itertools = "0.14"
+ndarray = "0.17"
+petgraph = "0.8"
+regex = "1"
+
+[lints.clippy]
+pedantic = "warn"
+
+[lib]
+bench = false
+
+[[bin]]
+name = "aoc25"
+bench = false
+
+[[bench]]
+name = "benchmark"
+harness = false
