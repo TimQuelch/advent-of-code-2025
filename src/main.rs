@@ -2,6 +2,7 @@ use std::time::{Duration, Instant};
 
 use aoc25::days::{DAYS, Day};
 
+#[expect(clippy::cast_precision_loss)]
 fn format_duration(d: Duration) -> String {
     let nanos = d.as_nanos();
 
@@ -36,18 +37,16 @@ fn run_days(days: Vec<&Day>) {
             })
             .collect::<Vec<_>>()
     });
-    results
-        .into_iter()
-        .for_each(|(name, part1, part2, duration1, duration2)| {
-            println!(
-                "{}: {}, {} ({}, {})",
-                name,
-                part1,
-                part2,
-                format_duration(duration1),
-                format_duration(duration2)
-            );
-        });
+    for (name, part1, part2, duration1, duration2) in results {
+        println!(
+            "{}: {}, {} ({}, {})",
+            name,
+            part1,
+            part2,
+            format_duration(duration1),
+            format_duration(duration2)
+        );
+    }
     println!("Total time: {}", format_duration(total));
 }
 

@@ -1,5 +1,3 @@
-use std::fs;
-
 use aoc25::days::DAYS;
 use criterion::{Criterion, criterion_group, criterion_main};
 

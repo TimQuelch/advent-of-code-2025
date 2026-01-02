@@ -154,7 +154,7 @@ impl<T, C: Cost> AstarWorkingSpace<T, C> {
     }
 }
 
-pub fn astar<T, C: Cost, FE, FN, I, FH>(
+pub fn astar<T, C, FE, FN, I, FH>(
     s: T,
     is_end: FE,
     neighbours: FN,
@@ -250,7 +250,7 @@ impl<T, C: Cost> DijkstraWorkingSpace<T, C> {
     }
 }
 
-pub fn dijkstra_cost_map<T, C: Cost, FN, I>(
+pub fn dijkstra_cost_map<T, C, FN, I>(
     s: T,
     neighbours: FN,
     ws: &mut DijkstraWorkingSpace<T, C>,
