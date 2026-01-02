@@ -15,6 +15,7 @@ regex = "1"
 [lints.clippy]
 pedantic = { level = "warn", priority = -1 }
 missing_panics_doc = "allow"                 # don't really care about panics
+unreadable_literal = "allow"                 # many of these are copy paste
 allow_attributes = "warn"
 if_then_some_else_none = "warn"
 multiple_inherent_impl = "warn"
