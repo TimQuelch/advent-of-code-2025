@@ -16,6 +16,7 @@ regex = "1"
 pedantic = { level = "warn", priority = -1 }
 missing_panics_doc = "allow"                 # don't really care about panics
 unreadable_literal = "allow"                 # many of these are copy paste
+must_use_candidate = "allow"                 # macros and benchmarks make it weird
 allow_attributes = "warn"
 if_then_some_else_none = "warn"
 multiple_inherent_impl = "warn"

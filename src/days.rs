@@ -35,7 +35,6 @@ impl Day {
 macro_rules! declare_modules {
     ($($day:ident),*) => {
         $(
-            #[expect(clippy::must_use_candidate)] // results may be discarded in benchmarks
             pub mod $day;
         )*
     };
