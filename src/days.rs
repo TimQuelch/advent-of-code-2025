@@ -53,6 +53,6 @@ macro_rules! make_days {
     };
 }
 
-declare_modules!(d01, d02, d03, d04, d05, d06, d08);
+declare_modules!(d01, d02, d03, d04, d05, d06, d08, d11);
 pub static DAYS: LazyLock<Vec<Day>> =
-    LazyLock::new(|| make_days!(d01, d02, d03, d04, d05, d06, d08));
+    LazyLock::new(|| make_days!(d01, d02, d03, d04, d05, d06, d08, d11));
