@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    jail-nix.url = "sourcehut:~alexdavid/jail.nix";
     crane.url = "github:ipetkov/crane";
     pre-commit.url = "github:cachix/git-hooks.nix";
     pre-commit.inputs.nixpkgs.follows = "nixpkgs";
@@ -14,6 +15,7 @@
       self,
       nixpkgs,
       flake-utils,
+      jail-nix,
       crane,
       advisory-db,
       pre-commit,
@@ -23,6 +25,7 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        jail = jail-nix.lib.init pkgs;
         craneLib = crane.mkLib pkgs;
         src = craneLib.cleanCargoSource ./.;
 
@@ -42,6 +45,11 @@
           # devShell and git hooks we don't need to include it. Using an empty src inhibits
           # rebuilding the dev shell whenever any file changes
           src = builtins.emptyFile;
+          tools = with jail.combinators; {
+            nixfmt-rfc-style = jail "nixfmt" pkgs.nixfmt-rfc-style [ mount-cwd ];
+            rustfmt = jail "cargo-fmt" pkgs.rustfmt [ mount-cwd ];
+            taplo = jail "taplo" pkgs.taplo [ mount-cwd ];
+          };
           hooks = {
             nixfmt-rfc-style.enable = true;
             rustfmt.enable = true;
